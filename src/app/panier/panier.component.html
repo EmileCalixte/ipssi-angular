@@ -1,0 +1,15 @@
+<h1>Panier</h1>
+
+<div *ngIf="isPanierEmpty(); else elseBlock">Votre panier est vide.</div>
+<ng-template #elseBlock>
+  <ul>
+    <li *ngFor="let article of getPanierAsArray()">
+      <div><strong>{{ article.article.nom }}</strong></div>
+      <div>{{ article.article.prix | currency:'EUR' }}</div>
+      <div>x {{ article.quantite }} </div>
+    </li>
+  </ul>
+
+  <div>Total : {{ getTotalPrice() | currency:'EUR' }}</div>
+</ng-template>
+

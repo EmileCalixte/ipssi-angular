@@ -1,0 +1,20 @@
+<h1>Liste des articles</h1>
+
+<ul>
+  <li *ngFor="let article of articles">
+    <div><strong>{{ article.article.nom }}</strong></div>
+    <div>{{ article.article.description }}</div>
+    <div>{{ article.article.prix | currency:'EUR' }}</div>
+
+    <div *ngIf="article.quantite > 0; else elseBlock">
+      {{ article.quantite }} en stock
+      <div class="btn-group">
+        <button type="button" class="btn btn-danger" (click)="clickRetirerDuPanier(article.id)">-</button>
+        <button type="button" class="btn btn-success" (click)="clickAjouterAuPanier(article.id)">+</button>
+      </div>
+    </div>
+    <ng-template #elseBlock>
+      Stock épuisé
+    </ng-template>
+    </li>
+</ul>
